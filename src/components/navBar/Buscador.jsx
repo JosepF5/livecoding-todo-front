@@ -1,14 +1,9 @@
-import React, { useContext, useState,useEffect } from 'react'
-import { Store } from '../../state/StoreProvider'
-import Note from '../../components/note/Note'
+import React, {useState } from 'react'
 import Tag from '../../components/tag/Tag'
 import Category from '../../components/category/Category'
 import CategoryForm from '../../components/category/CategoryForm'
-function Buscador({categoryList}) {
-
-  const {state, dispatch} = useContext(Store)    
+function Buscador({categoryList}) {   
   const [value, setValue] = useState('')
-  const [lista, setList] = useState([])
   let tagToAdd=null
   const addingValue = (e) => {
     setValue(e.target.value)
@@ -46,7 +41,6 @@ const etiquetasList=compareValue(tagToAdd)
         (etiquetasList!==[]?(etiquetasList.map(tags => <Tag key={tags.id}tag={tags}/>)):<h2>Buscando</h2>))
         }
       </div>
-      
     </div>
   )
 }
