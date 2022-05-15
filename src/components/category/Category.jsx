@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { deleteCategoryBack } from '../../actions/categoryActions/categoryActions';
 import { Store } from '../../state/StoreProvider';
 import NoteList from '../note/NoteList'
-
+import { Button } from 'react-bootstrap';
 const Category = ({category: {id, title, notes}}) => {
 
   const {dispatch} = useContext(Store)
@@ -21,7 +21,7 @@ const Category = ({category: {id, title, notes}}) => {
   return (
     <div>
       <h2>{title}</h2>
-      <button onClick={() => deleteCategory(id)}>Delete category</button>
+      <Button onClick={() => deleteCategory(id)} variant="danger">Delete category</Button>
       <NoteList id={id} notes={notes}/>
     </div>
   )

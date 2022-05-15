@@ -3,7 +3,7 @@ import { deleteNote, putNote } from '../../actions/noteActions/noteActions';
 import { Store } from '../../state/StoreProvider';
 import TagList from '../tag/TagList';
 import { postTag } from '../../actions/tagActions/tagActions';
-
+import { Button } from 'react-bootstrap';
 const Note = ({note}) => {
 
   const {dispatch} = useContext(Store)
@@ -61,16 +61,18 @@ const Note = ({note}) => {
   }
 
   return (
-    <div>
-      <h1 style={note.done?{'textDecoration': 'line-through'}:{}}>{note.message}</h1>
-      <input onChange={onCheckbox} type="checkbox" checked={note.done} />
+    <div className="m-2">
+      <div>
+        <h1 style={note.done?{'textDecoration': 'line-through'}:{}}>{note.message}</h1>
+        <input onChange={onCheckbox} type="checkbox" checked={note.done} />
+      </div>
       <div>
           <input onChange={addingTitle} type="text" name="Tag" placeholder="Tag" />
-          <button onClick={addTag}>Add Tag</button>
-          <div ><TagList note={note.tags}></TagList></div>
+          <Button className="m-1" onClick={addTag} variant="success">Add Tag</Button>
+          <TagList note={note.tags}></TagList>
       </div>
-      <button onClick={() => onDeleteNote(note.id)}>delete note</button>
-      <button onClick={editNote}>edit note</button>
+      <Button className="m-1" onClick={() => onDeleteNote(note.id)} variant="danger">Delete Note</Button>
+      <Button className="m-1" onClick={editNote} variant="warning">Edit Note</Button>
     </div>
   )
 }
