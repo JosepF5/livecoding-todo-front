@@ -31,21 +31,22 @@ function Buscador({categoryList}) {
                 return tag.description===value?true:false;
         })))
         const newList = categoryList.find(c => c.notes.find(n=>n.tags.find(t=>t.description===value)))
+        
         const catList=[...categoryList]
-        console.log("nuevo")
-        console.log(nuevaLista)
-        nuevaLista.forEach(category =>category.forEach(notas =>notas.forEach(tags =>console.log(tags))))
+        /*console.log("nuevo")
+        console.log(nuevaLista)*/
+        const tagsList=[]
+        nuevaLista.forEach(category =>category.forEach(notas =>notas.forEach(tags =>tagsList.push(tags))))
         if(newList!==undefined){
             const noteToAddTask = newList.notes.find(n=>n.tags.find(t=>t.description===value))
             tagToAdd = noteToAddTask.tags.find(t=>t.description===value)
             console.log(tagToAdd)
         }
-        return tagToAdd
+        return tagsList
     }
-  
-tagToAdd=compareValue(tagToAdd)
+const etiquetasList=compareValue(tagToAdd)
   console.log("nuevoTag")
-  console.log(tagToAdd)
+  console.log(etiquetasList)
   return (
     <div>
       <h1>Buscador</h1>
@@ -54,7 +55,7 @@ tagToAdd=compareValue(tagToAdd)
       <CategoryForm />
       {
       (value===''?(categoryList.map(category => <Category key={category.id}category={category} />)):
-      (tagToAdd!==null?<Tag key={tagToAdd.id}tag={tagToAdd} />:<h1>No se encontro</h1>))
+      (etiquetasList!==[])?etiquetasList.map(tags => <Tag key={tags.id}tag={tags}/>):<h2>Buscando</h2>)
       }
     </div>
   )
