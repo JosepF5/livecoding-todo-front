@@ -4,7 +4,7 @@ import NoteForm from './NoteForm'
 
 const NoteList = ({notes, id}) => {
   return (
-    <div>
+    <div className="m-5">
       <NoteForm id={id}/>
       {notes.map(note => <Note key={note.id} note={note}/>)}
     </div>

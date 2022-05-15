@@ -9,3 +9,4 @@ const Tag = ({tag}) => {
 }
 
 export default Tag
+  

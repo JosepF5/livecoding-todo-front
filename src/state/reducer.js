@@ -17,7 +17,7 @@ const reducer = (state, action) => {
 
       const categoryWithNoteAdded = {...categoryToAddNote,
       notes: [...categoryToAddNote.notes, action.payload]} 
-
+1
       const newCategoryListWithNoteAdded = state.categoryList.map(category => category.id === action.payload.categoryId?categoryWithNoteAdded:category)
 
       const newStateWithNoteAdded = {...state,
@@ -61,7 +61,8 @@ const reducer = (state, action) => {
       return newStateWithNoteToBeUpdated
     case 'create-tag':
       const categoryToAddTask = state.categoryList.find(c => c.notes.find(n => n.id === action.payload.noteId))
-      console.log(state.categoryList)
+      console.log("tag")
+      console.log(categoryToAddTask)
       const noteToAddTask = categoryToAddTask.notes.find(n => n.id === action.payload.noteId)
       const noteWithTagAdded = { ...noteToAddTask, tags: [...noteToAddTask.tags, action.payload] }
       const newNoteList = categoryToAddTask.notes.map(n => n.id === action.payload.noteId ? noteWithTagAdded : n)

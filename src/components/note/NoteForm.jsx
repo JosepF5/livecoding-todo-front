@@ -45,7 +45,7 @@ const NoteForm = ({id}) => {
   }
 
   return (
-    <div>
+    <div className="m-5">
       <form>
         <label htmlFor="note"></label>
         <input onChange={addingMessage} type="text" name="note" value={message} placeholder={id===state.note.categoryId?state.note.message:''}/>
