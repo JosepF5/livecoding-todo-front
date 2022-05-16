@@ -25,8 +25,6 @@ function Buscador({categoryList}) {
         return tagsList
     }
 const etiquetasList=compareValue(tagToAdd)
-  console.log("nuevoTag")
-  console.log(etiquetasList)
   return (
     <div className="m-5">
       <div className="m-5">
@@ -38,7 +36,7 @@ const etiquetasList=compareValue(tagToAdd)
         <CategoryForm />
         {
         (value===''?(categoryList.map(category => <Category key={category.id}category={category} />)):
-        (etiquetasList!==[]?(etiquetasList.map(tags => <Tag key={tags.id}tag={tags}/>)):<h2>Buscando</h2>))
+        (etiquetasList.map(tags => <Tag key={tags.id}tag={tags}/>)))
         }
       </div>
     </div>

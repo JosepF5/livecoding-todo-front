@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { deleteNote, putNote } from '../../actions/noteActions/noteActions';
 import { Store } from '../../state/StoreProvider';
 import TagList from '../tag/TagList';
-import { postTag } from '../../actions/tagActions/tagActions';
+import TagForm from '../tag/TagForm';
 import { Button } from 'react-bootstrap';
 const Note = ({note}) => {
 
   const {dispatch} = useContext(Store)
-  const [title, setTitle] = useState('')
 
   const onCheckbox = async (e)=> {
     const checked = e.currentTarget.checked;
@@ -39,27 +38,6 @@ const Note = ({note}) => {
     dispatch(action)
   }
 
-  const addTag = async (e)=>{
-    e.preventDefault()
-    if(title){
-      const category = {
-        description:title,
-        noteId:note.id
-      }
-      const response = await postTag(category)
-      const action = {
-        type: 'create-tag',
-        payload: response
-      }
-      dispatch(action)
-      setTitle('')
-    }
-  }
-
-  const addingTitle = (e)=>{
-    setTitle(e.target.value)
-  }
-
   return (
     <div className="m-2">
       <div>
@@ -67,8 +45,7 @@ const Note = ({note}) => {
         <input onChange={onCheckbox} type="checkbox" checked={note.done} />
       </div>
       <div>
-          <input onChange={addingTitle} type="text" name="Tag" placeholder="Tag" />
-          <Button className="m-1" onClick={addTag} variant="success">Add Tag</Button>
+          <TagForm note={note}/>
           <TagList note={note.tags}></TagList>
       </div>
       <Button className="m-1" onClick={() => onDeleteNote(note.id)} variant="danger">Delete Note</Button>
